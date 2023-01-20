@@ -19,7 +19,6 @@ class CreateSuperCategoriesTable extends Migration
             $table->string("name")->nullable();
             $table->string("image_path")->nullable();
             $table->string("slug")->nullable();
-            $table->string("child")->nullable();
         });
     }
 

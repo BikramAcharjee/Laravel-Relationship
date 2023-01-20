@@ -11,6 +11,7 @@ class SuperCategory extends Model
 {
     use HasFactory;
     protected $table = "super_categories";
+    protected $hidden = ["created_at","updated_at","id"];
     protected $fillable = [
         "name",
         "image_path",

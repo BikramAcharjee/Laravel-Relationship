@@ -19,15 +19,10 @@ class CategoryController extends Controller
             'name' => 'required|string',
         ]);
         $slug = strtolower(str_replace(" ","-",trim($request->name)));
-        $destinationPath = $this->UploadImage($request->file('image'));
-
-        SuperCategory::create([
-            "name"=> $request->name,
-            "slug" => $slug,
-            "image_path" => $destinationPath
-        ]);
-
-        return response()->json(["message"=>"Image uploaded"],201);
+        $request['image_path'] = $this->UploadImage($request->file('image'));
+        $request['slug'] = $slug;
+        SuperCategory::create($request->all());
+        return response()->json(["message"=>"Super category Created !"],201);
     }
 
     public function CreateSubCategory(Request $request) {
@@ -37,15 +32,10 @@ class CategoryController extends Controller
             "super_category" => "required"
         ]);
         $slug = strtolower(str_replace(" ","-",trim($request->name)));
-        $destinationPath = $this->UploadImage($request->file('image'));
-
-        $subdata = SubCategory::create([
-            "name"=> $request->name,
-            "slug" => $slug,
-            "image_path" => $destinationPath,
-            "super_category" => $request->super_category
-        ]);
-        return response()->json(["message"=>"Image uploaded"],201);
+        $request['image_path'] = $this->UploadImage($request->file('image'));
+        $request['slug'] = $slug;
+        SubCategory::create($request->all());
+        return response()->json(["message"=>"Sub category created !"],201);
     }
     public function CreateItem(Request $request) {
         $request->validate([
@@ -54,15 +44,10 @@ class CategoryController extends Controller
             "sub_category" => "required"
         ]);
         $slug = strtolower(str_replace(" ","-",trim($request->name)));
-        $destinationPath = $this->UploadImage($request->file('image'));
-
-        $childdata = ChildCategory::create([
-            "name"=> $request->name,
-            "slug" => $slug,
-            "image_path" => $destinationPath,
-            "sub_category" => $request->sub_category
-        ]);
-        return response()->json(["message"=>"Image uploaded"],201);
+        $request['image_path'] = $this->UploadImage($request->file('image'));
+        $request['slug'] = $slug;
+        $childdata = ChildCategory::create($request->all());
+        return response()->json(["message"=>"Products created !"],201);
     }
 
     public function FetchById($id) {
@@ -85,6 +70,6 @@ class CategoryController extends Controller
         //save the image
         $destinationPath = public_path('/images');
         $image->move($destinationPath, $name);
-        return $destinationPath;
+        return $destinationPath."/".$name;
     }
 }

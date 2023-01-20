@@ -31,7 +31,7 @@ $(document).ready(function(){
         if(!response.ok) ShowMessage(false,"Something went wrong !",alertBox);
 
         const jsonRes = await response.json();
-        ShowMessage(true,"Super category created !",alertBox);
+        ShowMessage(true,"Sub category created !",alertBox);
         e.target.reset();
     })
 })
@@ -78,7 +78,7 @@ $(document).ready(function(){
         if(!response.ok) ShowMessage(false,"Something went wrong !",alertBox);
 
         const jsonRes = await response.json();
-        ShowMessage(true,"Super category created !",alertBox);
+        ShowMessage(true,"Products created !",alertBox);
         e.target.reset();
     })
 })

@@ -20,7 +20,6 @@ class CreateSubCategoriesTable extends Migration
             $table->string("name")->nullable();
             $table->string("image_path")->nullable();
             $table->string("slug")->nullable();
-            $table->string("child")->nullable();
             $table->foreign("super_category")->references("id")->on("super_categories")->onDelete("cascade");
         });
     }

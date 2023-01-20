@@ -10,6 +10,7 @@ class ChildCategory extends Model
 {
     use HasFactory;
     protected $table = "child_categories";
+    protected $hidden = ["created_at","updated_at","id","sub_category"];
     protected $fillable = [
         "name",
         "image_path",
