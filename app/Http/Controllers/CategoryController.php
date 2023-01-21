@@ -5,6 +5,7 @@ use Illuminate\Http\Request;
 use App\Models\SuperCategory;
 use App\Models\SubCategory;
 use App\Models\ChildCategory;
+use App\Models\Attributes;
 
 class CategoryController extends Controller
 {
@@ -50,18 +51,23 @@ class CategoryController extends Controller
         return response()->json(["message"=>"Products created !"],201);
     }
 
+    public function AddAttributes(Request $request) {
+        $request->validate([
+            "name" => "required",
+            "value" => "required|array",
+            "child_category" => "required|numeric"
+        ]);
+        Attributes::create($request->all());
+        return response()->json(["message" => "Attribute created !"],200);
+    }
+
     public function FetchById($id) {
         $_supdata = SuperCategory::find($id);
         return response()->json(["message"=> count($_supdata->sub_category)." Data found","child"=>$_supdata->sub_category],200);
     }
 
     public function GetProducts() {
-        $superCat = SuperCategory::with("sub_category")->get();
-        for($i = 0; $i < count($superCat); $i++) {
-            for($j = 0; $j < count($superCat[$i]->sub_category); $j++) {
-                $superCat[$i]->sub_category[$j]["child_category"] = $superCat[$i]->sub_category[$j]->child_category;
-            }
-        }
+        $superCat = SuperCategory::with(["sub_category","sub_category.child_category", "sub_category.child_category.attributes"])->get()->first();
         return response()->json($superCat,200);
     }
 

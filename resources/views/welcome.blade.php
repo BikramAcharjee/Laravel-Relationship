@@ -120,7 +120,7 @@
 
                             <div class="ml-12">
                                 <div class="mt-2 text-gray-600 dark:text-gray-400 text-sm">
-                                <form id="ItemForm">
+                                    <form id="ItemForm">
                                         <select required="required" class="form-select mb-3" name="supcategory" id="supcategory">
                                             <option value="">Select Super category</option>
                                         <?php
@@ -154,12 +154,39 @@
                         <div class="p-6 border-t border-gray-200 dark:border-gray-700 md:border-l">
                             <div class="flex items-center">
                                 <svg fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" viewBox="0 0 24 24" class="w-8 h-8 text-gray-500"><path d="M3.055 11H5a2 2 0 012 2v1a2 2 0 002 2 2 2 0 012 2v2.945M8 3.935V5.5A2.5 2.5 0 0010.5 8h.5a2 2 0 012 2 2 2 0 104 0 2 2 0 012-2h1.064M15 20.488V18a2 2 0 012-2h3.064M21 12a9 9 0 11-18 0 9 9 0 0118 0z"></path></svg>
-                                <div class="ml-4 text-lg leading-7 font-semibold text-gray-900 dark:text-white">Vibrant Ecosystem</div>
+                                <div class="ml-4 text-lg leading-7 font-semibold text-gray-900 dark:text-white">Create Attributes</div>
                             </div>
 
                             <div class="ml-12">
                                 <div class="mt-2 text-gray-600 dark:text-gray-400 text-sm">
-                                    Laravel's robust library of first-party tools and libraries, such as <a href="https://forge.laravel.com" class="underline">Forge</a>, <a href="https://vapor.laravel.com" class="underline">Vapor</a>, <a href="https://nova.laravel.com" class="underline">Nova</a>, and <a href="https://envoyer.io" class="underline">Envoyer</a> help you take your projects to the next level. Pair them with powerful open source libraries like <a href="https://laravel.com/docs/billing" class="underline">Cashier</a>, <a href="https://laravel.com/docs/dusk" class="underline">Dusk</a>, <a href="https://laravel.com/docs/broadcasting" class="underline">Echo</a>, <a href="https://laravel.com/docs/horizon" class="underline">Horizon</a>, <a href="https://laravel.com/docs/sanctum" class="underline">Sanctum</a>, <a href="https://laravel.com/docs/telescope" class="underline">Telescope</a>, and more.
+                                <form id="ItemForm">
+                                        <select required="required" class="form-select mb-3" name="supcategory" id="supcategory">
+                                            <option value="">Select Super category</option>
+                                        <?php
+                                            if($supCategory && count($supCategory) > 0) {
+                                                foreach($supCategory as $_item) {
+                                                    echo "<option value='".$_item['id']."'>".$_item['name']."</option>";
+                                                }
+                                            }
+                                            else {
+                                                echo "<option>No Item</option>";
+                                            }
+                                        ?>
+                                        </select>
+                                        <select required="required" class="form-select mb-3" name="sub_category" id="subcategory">
+                                            <option value="">Select Sub category</option>
+                                        </select>
+                                        <div class="input-group mb-3">
+                                            <span class="input-group-text" id="basic-addon1">Name</span>
+                                            <input required="required" type="text" name="name" class="form-control" placeholder="eg. color">
+                                        </div>
+                                        <div class="input-group mb-3">
+                                        <span class="input-group-text" id="basic-addon1">Value</span>
+                                        <input required="required" type="text" name="value" placeholder="eg. red" class="form-control">
+                                        </div>
+                                        <button type="submit" class="btn btn-danger">Create Attributes</button>
+                                    </form>
+                                    <div class="alert mt-3" id="childMessage" role="alert"></div>
                                 </div>
                             </div>
                         </div>

@@ -31,5 +31,6 @@ Route::group(["middleware"=> "api"],function($routes){
 Route::post("sup-category/create",[CategoryController::class, 'CreateSuperCategory']);
 Route::post("sub-category/create",[CategoryController::class, 'CreateSubCategory']);
 Route::post("create",[CategoryController::class, 'CreateItem']);
+Route::post("add-attribute",[CategoryController::class, 'AddAttributes']);
 Route::get("sub-category/{id}",[CategoryController::class, 'FetchById']);
 Route::get("products",[CategoryController::class, 'GetProducts']);

@@ -6,12 +6,20 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use App\Models\ChildCategory;
 use App\Models\SuperCategory;
+use App\Models\Attributes;
 
 class SubCategory extends Model
 {
     use HasFactory;
     protected $table = "sub_categories";
-    protected $hidden = ["created_at","updated_at","id","super_category"];
+    protected $hidden = [
+        "created_at",
+        "updated_at",
+        "image_path",
+        "slug",
+        "id",
+        "super_category"
+    ];
     protected $fillable = [
         "name",
         "image_path",
